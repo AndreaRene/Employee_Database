@@ -1,8 +1,26 @@
 {
   "dependencies": {
-    "chalk": "^5.0.1",
+    "chalk": "^2.4.1",
     "console.table": "^0.10.0",
     "inquirer": "^6.3.1",
     "mysql2": "^2.3.3"
-  }
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "name": "module_12_challenge",
+  "description": "command line employee database",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AndreaRene/Employee_Database.git"
+  },
+  "author": "AndreaRene",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AndreaRene/Employee_Database/issues"
+  },
+  "homepage": "https://github.com/AndreaRene/Employee_Database#readme"
 }
