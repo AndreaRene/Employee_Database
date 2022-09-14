@@ -17,5 +17,8 @@ SELECT id AS value, title AS name FROM role;
 
 SELECT id AS value, CONCAT(first_name, " ", last_name) AS name from Employee;
 
-
+SELECT CONCAT(employee.first_name, " ", employee.last_name) AS "employee",department.name AS "department"
+FROM employee
+JOIN role ON employee.role_id = role.id
+JOIN department ON role.department_id = department.id;
 
