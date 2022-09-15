@@ -134,6 +134,7 @@ const addDepartment = async () => {
     viewAllDepartments();
 };
 
+// need help
 const deleteDepartment = async () => {
     const deps = await db.promise().query("SELECT * FROM department;");
     const answers = await inquirer.prompt([{
@@ -254,6 +255,8 @@ const empsByDep = async () => {
     console.table(emps[0]);
     mainMenu();
 };
+
+// need help
 const deleteEmp = async () => {
     const emp = await db.promise().query("SELECT * FROM employee;");
     const answers = await inquirer.prompt([{
