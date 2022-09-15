@@ -136,7 +136,7 @@ const addDepartment = async () => {
 
 // need help
 const deleteDepartment = async () => {
-    const deps = await db.promise().query("SELECT * FROM department;");
+    const deps = await db.promise().query("SELECT id AS value, name as name FROM department;");
     const answers = await inquirer.prompt([{
         type: "list",
         name: "id",
@@ -144,6 +144,7 @@ const deleteDepartment = async () => {
         choices: deps[0]
     }
     ]);
+    console.log(answers);
     await db.promise().query("DELETE FROM department WHERE id = ?", answers);
 };
 

@@ -25,3 +25,5 @@ JOIN department ON role.department_id = department.id;
 SELECT CONCAT(employee.first_name, ' ', employee.last_name) AS 'employee',CONCAT(mgr.first_name, ' ', mgr.last_name) AS 'manager' 
 FROM employee 
 LEFT OUTER JOIN employee mgr ON employee.manager_id =mgr.id;
+
+SELECT IFNULL( (SELECT id FROM employee WHERE manager_id=1004),'not found');
