@@ -154,7 +154,6 @@ const viewAllRoles = async () => {
 
 const addRole = async () => {
     const deps = await db.promise().query("SELECT id AS value, name AS name FROM department;");
-    // title dept salary
     const answers = await inquirer.prompt([{
         type: "input",
         name: "title",
@@ -242,16 +241,30 @@ const updateRole = async () => {
     // updateManager(answers.role_id, answers.id);
 };
 
-const empsByMan = async () => { };
+const empsByMan = async () => {
+    const emps = await db.promise().query("SELECT CONCAT(employee.first_name, ' ', employee.last_name) AS 'employee',CONCAT(mgr.first_name, ' ', mgr.last_name) AS 'manager' FROM employee LEFT OUTER JOIN employee mgr ON employee.manager_id =mgr.id;");
+    console.table(emps[0]);
+    mainMenu();
+};
 
 const updateEmpMan = async () => { };
 
 const empsByDep = async () => {
-    const employees = await db.promise().query("SELECT CONCAT(employee.first_name, ' ', employee.last_name) AS 'employee',department.name AS 'department' FROM employee JOIN role ON employee.role_id = role.id JOIN department ON role.department_id = department.id;");
-    console.table(employees[0]);
+    const emps = await db.promise().query("SELECT CONCAT(employee.first_name, ' ', employee.last_name) AS 'employee',department.name AS 'department' FROM employee JOIN role ON employee.role_id = role.id JOIN department ON role.department_id = department.id;");
+    console.table(emps[0]);
     mainMenu();
 };
-const deleteEmp = async () => { };
+const deleteEmp = async () => {
+    const emp = await db.promise().query("SELECT * FROM employee;");
+    const answers = await inquirer.prompt([{
+        type: "list",
+        name: "id",
+        message: chalk.green("Please select the employee to delete:"),
+        choices: emp[0]
+    }
+    ]);
+    await db.promise().query("DELETE FROM employee WHERE id = ?", answers);
+};
 
 const budgetByDep = async () => { };
 
